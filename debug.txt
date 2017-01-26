@@ -1,0 +1,36 @@
+Exercice 4 :
+
+
+2- Le programme est executé sur le terminal au sein d'un rapport indiquant une analyse de la mémoire allouée, libérée ainsi que les fuites possibles detectées à l'aide de l'outil Memcheck.
+
+3- Heap SUMMARY
+  in use at exit     //indique le nombre d'octet utilisé par le programme 
+							//à la fin de son execution
+
+  total heap usage:  //indique le nombre d'instruction d'allocation et de libération
+                     //de la mémoire réalisé, ainsi que le nombre d'octet alloué
+                     //durant l'execution du programme
+
+  All heap blocks were freed -- no leaks are possible  //indique si des blocks mémoire
+																		 //n'ont pas été libéré (0 dans ce cas)
+
+5- L'erreur se trouve à la ligne 6 de mem.c, valgrind nous indique aussi que cette erreur est de type "accés mémoire non défini ou non autorisé"
+
+6- On ajoute la ligne suivante apres la recuperation de la valeur de size aupres de l'utilisateur :
+
+	p= (int*)malloc(size * sizeof(int));
+
+
+7- L'instruction free doit etre deplacée a la fin du fichier mem2.c, sinon le calcul de sum se fera à partir d'acces mémoire sur une zone libérée et définie comme plus utilisée, ce qui ne garantit pas l'intégrité des données. 
+
+
+8- Valgrind indique une perte de mémoire définitive due à un manque de libération de la mémoire.
+
+9- Valgrind indique que l'erreur se trouve à la ligne 11 du fichier mem3.c.
+
+10- On ajoute la ligne suivante apres la premiere boucle de libération mémoire :
+
+	free(p);
+
+
+  

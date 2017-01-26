@@ -1,0 +1,118 @@
+TP4
+
+
+
+Exercice 1 :
+
+
+2- Un repertoire .git caché a été créé dans le depot.
+
+
+4- La commande git status indique qu'un fichier du repertoire n'est pas synchronisé dans la branche de travail, et nous invite à le faire
+
+5- Le fichier a dorenavant le statut "indexé"
+
+7- Le repertoire est maintenant à jour avec la branche de travail.
+
+8- La commande git log -p affiche les logs des différents commit: date, identité, fichiers concernés...
+
+9- La commande git diff affiche les differences qui existent sur les fichiers indexé depuis le precedent commit.
+
+11- Le depot sur github.com contient le fichier indexé present dans le depot en local, avec son contenu et des informations sur le dernier commit.
+
+
+
+
+Exercice 2 :
+
+
+2- Le répertoire PremierPas a été créé et en son sein le repertoire caché .git
+
+3- La commande git status retourne que le depot est à jour.
+
+6- Lors du push les nouveaux fichiers ainsi que la derniere version des fichiers du depot sont envoyé au serveur, apres une procedure de login.
+
+11- Avec la commande add on indique quel sont les fichiers que l'on souhaite mettre à jour, lors du commit on indique un message et la version des fichiers puis avec push on met à jour le depot sur le serveur. 
+
+
+
+
+
+Exercice 3 :
+
+1- 
+
+CFLAGS = -Wall -funroll -loops -03 -s
+LDLIBS = -lpng
+CC = gcc
+
+COMPILE = $(CC) $(CFLAGS)
+
+pbm2png: pbm2png.c
+	$(COMPILE) -o $@ $< $(LDLIBS) 
+
+pbm2eps9: printer.o printer.o
+	$(COMPILE) -s -o $@ $^ 
+
+%.o: %.c
+	$(COMPILE) -c -o $@ $<
+
+
+
+
+2-
+
+PROGRAMS = pbm2png pbm2eps9
+
+clean:
+	rm -f $(PROGRAMS)
+
+
+
+
+3- 
+
+%.o: %.c
+	$(COMPILE) -c -o $@ $<
+
+pbm2eps9.o: pbm2eps9.c printer.h
+printer.o: printer.c
+
+
+
+
+
+MAKEFILE FINAL:
+
+CFLAGS = -Wall -funroll -loops -03 -s
+LDLIBS = -lpng
+CC = gcc
+COMPILE = $(CC) $(CFLAGS)
+PROGRAMS = pbm2png pbm2eps9
+
+all: $(PROGRAMS)
+
+pbm2png: pbm2png.c
+	$(COMPILE) -o $@ $< $(LDLIBS) 
+
+pbm2eps9: printer.o printer.o
+	$(COMPILE) -s -o $@ $^ 
+
+%.o: %.c
+	$(COMPILE) -c -o $@ $<
+
+clean:
+	rm -f $(PROGRAMS)
+
+.PHONY: all clean
+
+
+
+
+Exercice 4 :
+
+voir debug.txt
+
+
+
+
